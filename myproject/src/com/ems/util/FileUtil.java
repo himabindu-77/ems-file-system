@@ -64,8 +64,7 @@ public class FileUtil {
 		}
 	}
 
-	// Rewrite entire file from map
-	public static void rewriteFile(Map<String, Employee> empMap) {
+		public static void rewriteFile(Map<String, Employee> empMap) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
 			for (Map.Entry<String, Employee> entry : empMap.entrySet()) {
 				Employee emp = entry.getValue();

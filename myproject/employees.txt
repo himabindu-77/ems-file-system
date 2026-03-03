@@ -1,0 +1,2 @@
+TEK111,bindu,bindu111@gmail.com,1111.0,8989898989
+TEK112,mansi,mansi112@gmail.com,1212.0,9897898989

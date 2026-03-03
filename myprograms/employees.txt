@@ -1,4 +1,0 @@
-TEK111,chris,chris123@gmail.com,8888.0,8897898978
-TEK112,mansi,mansi123@gmail.com,4444.0,8978989709
-TEK133,john,john122@gmail.com,3232.0,8978909898
-TEK144,john jacob,jj@gmail.com,4342.0,8786787878
