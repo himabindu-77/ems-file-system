@@ -57,7 +57,7 @@ public class FileUtil {
 				}
 
 				empMap.put(id, new Employee(name, email, salary, phone));
-				System.out.println("\n");
+				//System.out.println("\n");
 			}
 		} catch (IOException e) {
 			System.out.println("Error reading file: ");

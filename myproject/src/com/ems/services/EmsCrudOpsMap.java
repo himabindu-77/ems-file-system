@@ -79,7 +79,7 @@ public class EmsCrudOpsMap {
 	// DISPLAY ALL
 	public void displayEmployeeList() {
 
-		 System.out.println("--------------------------------------------");
+		System.out.println("--------------------------------------------");
 
 		if (empMap.isEmpty()) {
 			System.out.println("No records found");
@@ -88,14 +88,14 @@ public class EmsCrudOpsMap {
 
 		for (Map.Entry<String, Employee> entry : empMap.entrySet()) {
 			System.out.println("Employee ID: " + entry.getKey() + " -> " + entry.getValue());
-			// System.out.println("--------------------------------");
+			System.out.println("--------------------------------");
 		}
 	}
 
 	// DISPLAY BY ID
 	public void displayEmployeesById() {
 
-		 System.out.println("--------------------------------");
+		System.out.println("--------------------------------");
 		System.out.println("Enter Employee ID:");
 
 		String empId = scanner.nextLine().trim().toUpperCase();
@@ -177,10 +177,10 @@ public class EmsCrudOpsMap {
 		}
 
 		System.out.println("Enter New Salary:");
-	    double empSalary = scanner.nextDouble();
-	    scanner.nextLine();
-	    employee.setEmpSalary(empSalary);
-	    System.out.println("Phone Number:");
+		double empSalary = scanner.nextDouble();
+		scanner.nextLine();
+		employee.setEmpSalary(empSalary);
+		System.out.println("Phone Number:");
 		String empPhoneNumber = scanner.nextLine().trim();
 
 		if (!PhoneNoValidation.isValid(empPhoneNumber)) {
