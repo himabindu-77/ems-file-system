@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.ems.Interface.EmsInterface;
 import com.ems.model.Employee;
 import com.ems.util.EmailValidation;
 import com.ems.util.FileUtil;
 import com.ems.util.IdValidation;
 import com.ems.util.NameValidation;
-
 import com.ems.util.PhoneNoValidation;
 
-public class EmsCrudOpsMap {
+public class EmsCrudOpsMap  implements EmsInterface {
 
 	public static Map<String, Employee> empMap = new HashMap<>();
 	Scanner scanner = new Scanner(System.in);
@@ -209,4 +209,5 @@ public class EmsCrudOpsMap {
 			System.out.println("Record not found.");
 		}
 	}
+
 }
