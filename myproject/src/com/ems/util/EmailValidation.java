@@ -7,5 +7,4 @@ public class EmailValidation {
 	public static boolean isValid(String empEmail) {
 		return empEmail != null && empEmail.matches(EMAIL_REGEX);
 	}
-
 }
