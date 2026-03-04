@@ -1,5 +1,6 @@
 package com.ems.util;
 
+
 public class PhoneNoValidation {
 
     private static final String PHONE_REGEX = "^[6-9][0-9]{9}$";

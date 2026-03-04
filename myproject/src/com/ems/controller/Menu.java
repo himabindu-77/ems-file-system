@@ -1,4 +1,4 @@
-package com.ems.Main;
+package com.ems.controller;
 
 import java.util.Scanner;
 

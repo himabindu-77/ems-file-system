@@ -14,7 +14,7 @@ public class Employee {
 		}
 
 		public String toString() {
-			return ("\nempName=   " + empName + 
+			return ("empName=   " + empName + 
 					"\nempEmail=  " + empEmail + 
 					"\nempSalary= " + empSalary +
 					"\nempPhoneNumber=" +empPhoneNumber);
