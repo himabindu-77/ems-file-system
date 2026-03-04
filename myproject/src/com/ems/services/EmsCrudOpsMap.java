@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.ems.Interface.EmsInterface;
+import com.ems.interfaces.EmsInterface;
 import com.ems.model.Employee;
 import com.ems.util.EmailValidation;
 import com.ems.util.FileUtil;
