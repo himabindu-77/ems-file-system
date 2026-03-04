@@ -57,8 +57,7 @@ public class FileUtil {
 				}
 
 				empMap.put(id, new Employee(name, email, salary, phone));
-				// System.out.println("\n");
-			}
+							}
 		} catch (IOException e) {
 			System.out.println("Error reading file: ");
 		}
@@ -66,7 +65,9 @@ public class FileUtil {
 
 	public static void rewriteFile(Map<String, Employee> empMap) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
-			for (Map.Entry<String, Employee> entry : empMap.entrySet()) {
+			for (Map.Entry<String, Employee> entry : empMap.entrySet()) 
+			{
+				System.out.println("keys" +entry.getKey());
 				Employee emp = entry.getValue();
 				bw.write(entry.getKey() + "," + emp.getEmpName() + "," + emp.getEmpEmail() + "," + emp.getEmpSalary()
 						+ "," + emp.getEmpPhoneNumber());
