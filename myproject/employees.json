@@ -16,5 +16,11 @@
     "empEmail" : "jj113@gmail.com",
     "empSalary" : 9877.0,
     "empPhoneNumber" : "9878978976"
+  },
+  "TEK114" : {
+    "empName" : "mansi",
+    "empEmail" : "mansi114@gmail.com",
+    "empSalary" : 4444.0,
+    "empPhoneNumber" : "9878909899"
   }
 }
