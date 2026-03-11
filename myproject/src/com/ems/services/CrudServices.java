@@ -146,7 +146,7 @@ public class CrudServices implements EmsInterface {
 
 		case "NAME":
 			while (true) {
-				System.out.println("name in records:" +employee.getEmpName());
+				System.out.println("name in records:" + employee.getEmpName());
 				System.out.println("Enter New Name:");
 				String empName = scanner.nextLine().trim();
 				if (NameValidation.isValid(empName)) {
@@ -189,7 +189,7 @@ public class CrudServices implements EmsInterface {
 
 		case "PHONENUMBER":
 			while (true) {
-				System.out.println("prev phone number:"+employee.getEmpPhoneNumber());
+				System.out.println("prev phone number:" + employee.getEmpPhoneNumber());
 				System.out.println("Enter New Phone Number:");
 				String empPhoneNumber = scanner.nextLine().trim();
 				if (PhoneNoValidation.isValid(empPhoneNumber)) {

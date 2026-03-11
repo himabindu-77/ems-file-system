@@ -5,16 +5,16 @@
     "empSalary" : 8888.0,
     "empPhoneNumber" : "7568945896"
   },
-  "TEK113" : {
-    "empName" : "john junior",
-    "empEmail" : "jj123@gmail.com",
-    "empSalary" : 888.0,
-    "empPhoneNumber" : "7894569874"
-  },
   "TEK112" : {
     "empName" : "mark john",
     "empEmail" : "john111@gmail.com",
     "empSalary" : 3232.0,
     "empPhoneNumber" : "9876576589"
+  },
+  "TEK113" : {
+    "empName" : "john junior",
+    "empEmail" : "jj113@gmail.com",
+    "empSalary" : 9877.0,
+    "empPhoneNumber" : "9878978976"
   }
 }
