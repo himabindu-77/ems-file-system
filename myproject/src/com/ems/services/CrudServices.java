@@ -123,6 +123,7 @@ public class CrudServices implements EmsInterface {
 		}
 	}
 
+	
 	public void updateEmployeeDetails() {
 		System.out.println("--------------------------------");
 		System.out.println("Enter Employee ID to update:");
@@ -228,5 +229,4 @@ public class CrudServices implements EmsInterface {
 			System.out.println("Record not found.");
 			System.out.println("--------------------------------");
 		}
-	}
-}
+	}}
