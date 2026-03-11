@@ -3,12 +3,12 @@ package com.ems.controller;
 import java.util.Scanner;
 
 import com.ems.enums.*;
-import com.ems.services.EmsCrudOpsMap;
+import com.ems.services.CrudServices;
 
 public class Menu {
 
 	Scanner scanner = new Scanner(System.in);
-	EmsCrudOpsMap service = new EmsCrudOpsMap();
+	CrudServices service = new CrudServices();
 
 	public void start() {
 		MenuChoices choice = null;

@@ -12,21 +12,19 @@ import com.ems.util.IdValidation;
 import com.ems.util.NameValidation;
 import com.ems.util.PhoneNoValidation;
 
-public class EmsCrudOpsMap  implements EmsInterface {
+public class CrudServices implements EmsInterface {
 
 	public static Map<String, Employee> empMap = new HashMap<>();
 	Scanner scanner = new Scanner(System.in);
 
-	public EmsCrudOpsMap() {
-		FileUtil.loadEmployees(empMap);
+	public CrudServices() {
+		empMap = FileUtil.writeFromJson();
 	}
 
-	// CREATE
+	// create
 	public void addEmployeeDetails() {
-
 		System.out.println("--------------------------------------------");
 		System.out.println("Employee Id:");
-
 		String empId = scanner.nextLine().toUpperCase().trim();
 
 		if (!IdValidation.isValid(empId)) {
@@ -43,7 +41,6 @@ public class EmsCrudOpsMap  implements EmsInterface {
 		while (true) {
 			System.out.println("Name:");
 			empName = scanner.nextLine().trim();
-
 			if (!NameValidation.isValid(empName)) {
 				System.out.println("Invalid name. Only alphabets allowed.");
 				continue;
@@ -53,10 +50,8 @@ public class EmsCrudOpsMap  implements EmsInterface {
 
 		System.out.println("Email:");
 		String empEmail = scanner.nextLine().trim();
-
 		if (!EmailValidation.isValid(empEmail)) {
 			System.out.println("Invalid email format");
-			return;
 		}
 
 		System.out.println("Salary:");
@@ -65,83 +60,71 @@ public class EmsCrudOpsMap  implements EmsInterface {
 
 		System.out.println("Phone Number:");
 		String empPhoneNumber = scanner.nextLine().trim();
-
 		if (!PhoneNoValidation.isValid(empPhoneNumber)) {
 			System.out.println("Invalid phone number");
 			return;
 		}
 
 		empMap.put(empId, new Employee(empName, empEmail, empSalary, empPhoneNumber));
-
-		FileUtil.saveEmployee(empId, empMap.get(empId));
+		FileUtil.saveAsJson(empMap);
 		System.out.println("Employee added successfully!");
 	}
 
-	// DISPLAY ALL
+	// disp all
 	public void displayEmployeeList() {
-
 		System.out.println("--------------------------------------------");
-
 		if (empMap.isEmpty()) {
 			System.out.println("No records found");
 			return;
 		}
-
 		for (Map.Entry<String, Employee> entry : empMap.entrySet()) {
-			System.out.println("Employee ID: " + entry.getKey() + " -> " + entry.getValue());
+			System.out.println("Employee ID: " + entry.getKey());
+			System.out.println(entry.getValue());
 			System.out.println("--------------------------------");
 		}
 	}
 
-	// DISPLAY BY ID
+	// disp by id
 	public void displayEmployeesById() {
-
 		System.out.println("--------------------------------");
 		System.out.println("Enter Employee ID:");
-
 		String empId = scanner.nextLine().trim().toUpperCase();
-
 		if (empMap.containsKey(empId)) {
 			System.out.println(empMap.get(empId));
+			System.out.println("--------------------------------");
 		} else {
 			System.out.println("No record found");
+			System.out.println("--------------------------------");
 		}
 	}
 
 	// DISPLAY BY NAME
 	public void displayEmployeesByName() {
-
 		System.out.println("--------------------------------");
 		System.out.println("Enter Employee name to search:");
-
 		String searchName = scanner.nextLine().trim();
 		boolean found = false;
-
 		for (Map.Entry<String, Employee> entry : empMap.entrySet()) {
-
 			Employee emp = entry.getValue();
 			String[] nameSplit = emp.getEmpName().split("\\s+");
-
 			for (String part : nameSplit) {
 				if (part.equalsIgnoreCase(searchName)) {
-					System.out.println("Employee ID: " + entry.getKey() + " -> " + emp);
+					System.out.println("Employee ID: " + entry.getKey());
+					System.out.println(emp);
 					System.out.println("--------------------------------");
 					found = true;
 				}
 			}
 		}
-
 		if (!found) {
 			System.out.println("No employees found with name: " + searchName);
+			System.out.println("--------------------------------");
 		}
 	}
 
-	// UPDATE
 	public void updateEmployeeDetails() {
-
 		System.out.println("--------------------------------");
 		System.out.println("Enter Employee ID to update:");
-
 		String empId = scanner.nextLine().trim().toUpperCase();
 
 		if (!empMap.containsKey(empId)) {
@@ -151,63 +134,96 @@ public class EmsCrudOpsMap  implements EmsInterface {
 
 		Employee employee = empMap.get(empId);
 
-		// Update Name
-		while (true) {
-			System.out.println("Enter New Name:");
-			String empName = scanner.nextLine().trim();
+		System.out.println("What do you want to update?");
+		System.out.println("NAME");
+		System.out.println("EMAIL");
+		System.out.println("SALARY");
+		System.out.println("PHONENUMBER");
 
-			if (NameValidation.isValid(empName)) {
-				employee.setEmpName(empName);
-				break;
-			} else {
-				System.out.println("Invalid name. Try again.");
+		String choice = scanner.nextLine().trim().toUpperCase();
+
+		switch (choice) {
+
+		case "NAME":
+			while (true) {
+				System.out.println("name in records:" +employee.getEmpName());
+				System.out.println("Enter New Name:");
+				String empName = scanner.nextLine().trim();
+				if (NameValidation.isValid(empName)) {
+					employee.setEmpName(empName);
+					break;
+				} else {
+					System.out.println("Invalid name. Try again.");
+				}
 			}
-		}
+			break;
 
-		// Update Email id
-		while (true) {
-			System.out.println("Enter New Email:");
-			String empEmail = scanner.nextLine().trim();
-
-			if (EmailValidation.isValid(empEmail)) {
-				employee.setEmpEmail(empEmail);
-				break;
-			} else {
-				System.out.println("Invalid email format. Try again.");
+		case "EMAIL":
+			while (true) {
+				System.out.println("old email:" + employee.getEmpEmail());
+				System.out.println("Enter New Email:");
+				String empEmail = scanner.nextLine().trim();
+				if (EmailValidation.isValid(empEmail)) {
+					employee.setEmpEmail(empEmail);
+					break;
+				} else {
+					System.out.println("Invalid email. Try again.");
+				}
 			}
-		}
+			break;
 
-		System.out.println("Enter New Salary:");
-		double empSalary = scanner.nextDouble();
-		scanner.nextLine();
-		employee.setEmpSalary(empSalary);
-		System.out.println("Phone Number:");
-		String empPhoneNumber = scanner.nextLine().trim();
+		case "SALARY":
+			while (true) {
+				System.out.println("prev salary:" + employee.getEmpSalary());
+				System.out.println("Enter New Salary:");
+				double empSalary = scanner.nextDouble();
+				scanner.nextLine();
+				if (empSalary > 1000) {
+					employee.setEmpSalary(empSalary);
+					break;
+				} else {
+					System.out.println("invalid salary ,enter again");
+				}
+			}
+			break;
 
-		if (!PhoneNoValidation.isValid(empPhoneNumber)) {
-			System.out.println("Invalid phone number");
+		case "PHONENUMBER":
+			while (true) {
+				System.out.println("prev phone number:"+employee.getEmpPhoneNumber());
+				System.out.println("Enter New Phone Number:");
+				String empPhoneNumber = scanner.nextLine().trim();
+				if (PhoneNoValidation.isValid(empPhoneNumber)) {
+					employee.setEmpPhoneNumber(empPhoneNumber);
+					break;
+				} else {
+					System.out.println("Invalid phone. Try again.");
+				}
+			}
+			break;
+
+		default:
+			System.out.println("Invalid choice!");
 			return;
 		}
 
-		employee.setEmpPhoneNumber(empPhoneNumber);
-		FileUtil.rewriteFile(empMap);
+		empMap.put(empId, employee);
+		FileUtil.saveAsJson(empMap);
 		System.out.println("Employee updated successfully!");
+		System.out.println("--------------------------------");
 	}
 
-	// DEL
+	// DELETE
 	public void deleteEmployeeDetails() {
-
 		System.out.println("Enter Employee ID to delete:");
 		String empId = scanner.nextLine().trim().toUpperCase();
-
 		Employee removed = empMap.remove(empId);
-
 		if (removed != null) {
-			FileUtil.rewriteFile(empMap);
+			FileUtil.saveAsJson(empMap);
 			System.out.println("Employee deleted successfully.");
+			System.out.println("--------------------------------");
 		} else {
 			System.out.println("Record not found.");
+			System.out.println("--------------------------------");
 		}
 	}
-
 }

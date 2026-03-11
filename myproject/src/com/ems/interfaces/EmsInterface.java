@@ -13,4 +13,5 @@ public interface EmsInterface {
 	public void updateEmployeeDetails();
 
 	public void deleteEmployeeDetails();
+
 }
