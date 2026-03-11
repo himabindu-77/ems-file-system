@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.ems.enums.UpdateChoices;
 import com.ems.interfaces.EmsInterface;
 import com.ems.model.Employee;
 import com.ems.util.EmailValidation;
@@ -134,17 +135,23 @@ public class CrudServices implements EmsInterface {
 
 		Employee employee = empMap.get(empId);
 
-		System.out.println("What do you want to update?");
-		System.out.println("NAME");
-		System.out.println("EMAIL");
-		System.out.println("SALARY");
-		System.out.println("PHONENUMBER");
-
+		for (UpdateChoices option : UpdateChoices.values()) {
+			System.out.println(option);
+		}
+		System.out.print("Enter your choice: ");
 		String choice = scanner.nextLine().trim().toUpperCase();
 
-		switch (choice) {
+		UpdateChoices updateChoice;
+		try {
+			updateChoice = UpdateChoices.valueOf(choice);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Invalid choice!");
+			return;
+		}
 
-		case "NAME":
+		switch (updateChoice) {
+
+		case NAME:
 			while (true) {
 				System.out.println("name in records:" + employee.getEmpName());
 				System.out.println("Enter New Name:");
@@ -158,7 +165,7 @@ public class CrudServices implements EmsInterface {
 			}
 			break;
 
-		case "EMAIL":
+		case EMAIL:
 			while (true) {
 				System.out.println("old email:" + employee.getEmpEmail());
 				System.out.println("Enter New Email:");
@@ -172,7 +179,7 @@ public class CrudServices implements EmsInterface {
 			}
 			break;
 
-		case "SALARY":
+		case SALARY:
 			while (true) {
 				System.out.println("prev salary:" + employee.getEmpSalary());
 				System.out.println("Enter New Salary:");
@@ -182,12 +189,12 @@ public class CrudServices implements EmsInterface {
 					employee.setEmpSalary(empSalary);
 					break;
 				} else {
-					System.out.println("invalid salary ,enter again");
+					System.out.println("invalid salary, enter again");
 				}
 			}
 			break;
 
-		case "PHONENUMBER":
+		case PHONENUMBER:
 			while (true) {
 				System.out.println("prev phone number:" + employee.getEmpPhoneNumber());
 				System.out.println("Enter New Phone Number:");
@@ -200,10 +207,6 @@ public class CrudServices implements EmsInterface {
 				}
 			}
 			break;
-
-		default:
-			System.out.println("Invalid choice!");
-			return;
 		}
 
 		empMap.put(empId, employee);

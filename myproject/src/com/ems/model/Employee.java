@@ -1,8 +1,6 @@
 package com.ems.model;
 
-import java.io.Serializable;
-
-public class Employee implements Serializable {
+public class Employee  {
 	private String empName;
 	private String empEmail;
 	private double empSalary;
